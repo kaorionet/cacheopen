@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API CacheService",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://viajesmexicoparadise/"
+        }
+    ],
+    "paths": {
+        "/api/setcache": {
+            "post": {
+                "tags": [
+                    "CacheService"
+                ],
+                "summary": "Inserta un objeto en cache",
+                "operationId": "setcachebykeyvalue",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "keycache": {
+                                        "type": "string"
+                                    },
+                                    "valueText": {
+                                        "type": "string"
+                                    },
+                                    "keyClient": {
+                                        "type": "string"
+                                    },
+                                    "timer": {
+                                        "type": "integer",
+                                        "format": "int"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inserta un objeto en cache."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/getcache/{client}/{keyvalue}": {
+            "get": {
+                "tags": [
+                    "CacheService"
+                ],
+                "summary": "Obtener objeto almacenado en cache",
+                "operationId": "getcachebykeyvalue",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "path",
+                        "description": "Identificador del cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "keyvalue",
+                        "in": "path",
+                        "description": "keyvalue llave unica para obtener el valor almacenado en el servicio de cache",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtener objeto almacenado en cache."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "summary": "Mostrar usuarios",
+                "operationId": "App\\Http\\Controllers\\Api\\UserController::index",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los usuarios."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
